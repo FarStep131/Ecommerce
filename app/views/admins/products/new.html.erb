@@ -1,0 +1,36 @@
+<h1>Admins::Products#new</h1>
+<p>Find me in app/views/admins/products/new.html.erb</p>
+
+<%= form_with model: @product, url: admins_products_path, local:true do |f| %>
+  <%= render "layouts/error_messages", obj: @product %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  
+  <div>
+    <%= f.label :price %>
+    <%= f.number_field :price %>
+  </div>
+
+  <div>
+    <%= f.label :genre %>
+    <%= f.select :genre, [["スフレ", "スフレ"], ["ベイクド", "ベイクド"], ["ニューヨーク", "ニューヨーク"], ["レア", "レア"]], {prompt: "選択されていません"} %>
+  </div>
+  <div>
+    <%= f.label :sales_status %>
+    <%= f.select :sales_status, [["準備中", "準備中"], ["販売可", "販売可"], ["在庫切れ", "在庫切れ"], ["販売終了", "販売終了"]], {prompt: "選択されていません"} %>
+  </div>
+
+  <%= f.submit %>
+<% end %>

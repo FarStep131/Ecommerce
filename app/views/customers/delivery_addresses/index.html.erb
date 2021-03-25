@@ -1,0 +1,13 @@
+<h1>Customers::DeliveryAddresses#index</h1>
+<p>Find me in app/views/customers/delivery_addresses/index.html.erb</p>
+
+<% @delivery_addresses.each do |delivery_address| %>
+  <div>
+    <%= delivery_address.name %>
+    <%= delivery_address.postal_code %>
+    <%= delivery_address.prefecture %>
+    <%= delivery_address.address %>
+    <%= link_to '編集', edit_delivery_address_path(delivery_address) %>
+    <%= link_to '削除', delivery_address_path(delivery_address), method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+  </div>
+<% end %>

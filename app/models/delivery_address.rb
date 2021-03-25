@@ -1,23 +1,11 @@
-class Customer < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-  
-  has_many :cart_products, dependent: :destroy
-  has_many :delivery_addresses, dependent: :destroy
-  has_many :orders, dependent: :destroy
+class DeliveryAddress < ApplicationRecord
+  belongs_to :customer
 
   with_options presence: true do
-    validates :family_name
-    validates :given_name
-    validates :family_name_kana
-    validates :given_name_kana
+    validates :name
     validates :postal_code
     validates :prefecture
     validates :address
-    validates :phone_number
-    validates :is_active
   end
 
   enum prefecture: {
@@ -69,8 +57,7 @@ class Customer < ApplicationRecord
     鹿児島県: 45, 
     沖縄県: 46
   }
-
-  def full_name
-    self.family_name + self.given_name
+  def full_address
+    self.postal_code + self.prefecture + self.name
   end
 end

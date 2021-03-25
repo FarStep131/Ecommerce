@@ -1,0 +1,29 @@
+<h1>Customers::DeliveryAddresses#new</h1>
+<p>Find me in app/views/customers/delivery_addresses/new.html.erb</p>
+
+<%= form_with model: @delivery_address, local: true do |f| %>
+  <%= render "layouts/error_messages", obj: @delivery_address %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :postal_code %>
+    <%= f.text_field :postal_code %>
+  </div>
+
+  <div>
+    <%= f.label :prefecture %>
+    <%= f.select :prefecture, DeliveryAddress.prefectures.keys, {prompt: "選択してください"} %>
+  </div>
+
+  <div>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

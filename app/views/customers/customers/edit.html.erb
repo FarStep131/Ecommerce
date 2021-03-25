@@ -1,0 +1,56 @@
+<h1>Customers::Customers#edit</h1>
+<p>Find me in app/views/customers/customers/edit.html.erb</p>
+
+<%= form_with model: @customer, url: customers_path, local: true do |f| %>
+  <div>
+    <%= f.label :family_name %>
+    <%= f.text_field :family_name %>
+  </div>
+
+  <div>
+    <%= f.label :given_name %>
+    <%= f.text_field :given_name %>
+  </div>
+
+  <div>
+    <%= f.label :family_name_kana %>
+    <%= f.text_field :family_name_kana %>
+  </div>
+
+  <div>
+    <%= f.label :given_name_kana %>
+    <%= f.text_field :given_name_kana %>
+  </div>
+
+  <div>
+    <%= f.label :postal_code %>
+    <%= f.text_field :postal_code %>
+  </div>
+
+  <div>
+    <%= f.label :prefecture %>
+    <%= f.select :prefecture, Customer.prefectures.keys, {prompt: "選択してください"} %>
+  </div>
+
+  <div>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div>
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_number %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+<%= link_to '退会', customers_unsubscribe_path %>

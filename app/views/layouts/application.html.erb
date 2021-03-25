@@ -8,6 +8,7 @@
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
+    <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
   </head>
 
   <body>
@@ -15,6 +16,12 @@
       <%= render 'layouts/admins_header' %>
     <% else%>
       <%= render 'layouts/customers_header' %>
+    <% end %>
+    <% if flash[:notice] %>
+      <div class="alert alert-primary text-center" role="alert"><strong><%= notice %></strong></div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="alert alert-danger text-center" role="alert"><strong><%= alert %></strong></div>
     <% end %>
     <%= yield %>
   </body>

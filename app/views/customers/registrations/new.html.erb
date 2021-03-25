@@ -1,51 +1,52 @@
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'h-adr' }) do |f| %>
   <%= render "customers/shared/error_messages", resource: resource %>
 
+  <span class="p-country-name" style="display:none;">Japan</span>
   <div class="field">
     <%= f.label :family_name %><br />
-    <%= f.text_field :family_name, autofocus: true %>
+    <%= f.text_field :family_name %>
   </div>
 
   <div class="field">
     <%= f.label :given_name %><br />
-    <%= f.text_field :given_name, autofocus: true %>
+    <%= f.text_field :given_name %>
   </div>
 
   <div class="field">
     <%= f.label :family_name_kana %><br />
-    <%= f.text_field :family_name_kana, autofocus: true %>
+    <%= f.text_field :family_name_kana %>
   </div>
 
   <div class="field">
     <%= f.label :given_name_kana %><br />
-    <%= f.text_field :given_name_kana, autofocus: true %>
+    <%= f.text_field :given_name_kana %>
   </div>
 
   <div class="field">
     <%= f.label :postal_code %><br />
-    <%= f.text_field :postal_code, autofocus: true %>
+    <%= f.text_field :postal_code, class: "p-postal-code" %>
   </div>
 
   <div class="field">
     <%= f.label :prefecture %><br />
-    <%= f.select :prefecture, Customer.prefectures.keys, {prompt: "選択してください"} %>
+    <%= f.select :prefecture, Customer.prefectures.keys, {prompt: "選択してください"}, class: "p-region" %>
   </div>
 
   <div class="field">
     <%= f.label :address %><br />
-    <%= f.text_field :address, autofocus: true %>
+    <%= f.text_field :address, class: "p-locality p-street-address p-extended-address" %>
   </div>
 
   <div class="field">
     <%= f.label :phone_number %><br />
-    <%= f.text_field :phone_number, autofocus: true %>
+    <%= f.text_field :phone_number %>
   </div>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autocomplete: "email" %>
   </div>
 
   <div class="field">

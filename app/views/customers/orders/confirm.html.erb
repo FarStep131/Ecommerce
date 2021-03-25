@@ -1,0 +1,37 @@
+<div>
+  <% @cart_products.each do |cart_product| %>
+    <%= cart_product.product.name %>
+    <%= cart_product.product.price %>
+    <%= cart_product.quantity %>
+  <% end %>
+</div>
+
+<div>
+  商品合計（税込み）：<%= @order.charge - @order.postage %>
+  送料：<%= @order.postage %>
+  請求金額（税込み）<%= @order.charge %>
+</div>
+
+
+<div>
+  支払い方法：<%= @order.payment_method %>
+</div>
+
+<div>
+  お届け先住所
+  <%= @order.shipping_name %>
+  <%= @order.shipping_postal_code %>
+  <%= @order.shipping_prefecture %>
+  <%= @order.shipping_address %>
+</div>
+
+<%= form_with model: @order, url: orders_path, local: true do |f| %>
+  <%= f.hidden_field :shipping_name, value: @order.shipping_name %>
+  <%= f.hidden_field :shipping_postal_code, value: @order.shipping_postal_code %>
+  <%= f.hidden_field :shipping_prefecture, value: @order.shipping_prefecture %>
+  <%= f.hidden_field :shipping_address, value: @order.shipping_address %>
+  <%= f.hidden_field :postage, value: @order.postage %>
+  <%= f.hidden_field :charge, value: @order.charge %>
+  <%= f.hidden_field :payment_method, value: @order.payment_method %>
+  <%= f.submit %>
+<% end %>

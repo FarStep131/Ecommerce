@@ -1,0 +1,14 @@
+<h1>Customers::Orders#index</h1>
+<p>Find me in app/views/customers/orders/index.html.erb</p>
+
+
+<% @orders.each do |order| %>
+  <%= order.shipping_name %>
+  <%= order.shipping_postal_code %>
+  <%= order.shipping_prefecture %>
+  <%= order.shipping_address %>
+  <%= order.postage %>
+  <%= order.charge %>
+  <%= order.payment_method %>
+  <%= order.order_status %>
+<% end %>

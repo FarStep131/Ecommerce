@@ -1,0 +1,59 @@
+<h1>Customers::Orders#new</h1>
+<p>Find me in app/views/customers/orders/new.html.erb</p>
+
+<%= form_with model: @order, url: orders_confirm_path, local: true, class: 'h-adr' do |f| %>
+  <span class="p-country-name" style="display:none;">Japan</span>
+  <div>
+    <%= f.label :payment_method %>
+    <%= f.select :payment_method, [["クレジットカード", "クレジットカード"], ["銀行振り込み", "銀行振り込み"], ["代金引換え", "代金引換え"]] %>
+  </div>
+
+  <div>
+    <select name="address_options" id="address_options">
+      <option value="yourOwnAddress">ご自身の住所</option>
+      <option value="registeredAddresses">登録済み住所から選択</option>
+      <option value="newAddress">新しい住所を登録</option>
+    </select>
+  </div>
+
+  <div id="yourOwnAddress">
+    <%= current_customer.full_name %>
+    <%= current_customer.postal_code %>
+    <%= current_customer.prefecture %>
+    <%= current_customer.address %>
+  </div>
+
+  <div id="registeredAddresses" style="display: none;">
+    <select name="registered_address">
+      <%= @delivery_addresses.each do |delivery_address| %>
+        <option value=<%= delivery_address.id %>>
+          <%= delivery_address.full_address %>
+        </option>
+      <% end %>
+    </select>
+  </div>
+
+  <div id="newAddress" style="display: none;">
+    <div>
+      <%= f.label :shipping_name %>
+      <%= f.text_field :shipping_name %>
+    </div>
+    <div>
+      <%= f.label :shipping_postal_code %>
+      <%= f.text_field :shipping_postal_code, class: "p-postal-code" %>
+    </div>
+
+    <div>
+      <%= f.label :shipping_prefecture %>
+      <%= f.select :shipping_prefecture, Order.shipping_prefectures.keys, {prompt: "選択してください"}, class: "p-region" %>
+    </div>
+
+    <div>
+      <%= f.label :shipping_address %>
+      <%= f.text_field :shipping_address, class: "p-locality p-street-address p-extended-address" %>
+    </div>
+  </div>
+  <%= f.submit %>
+<% end %>
+
+<%= javascript_pack_tag 'orders/new' %>

@@ -1,0 +1,10 @@
+<h1>Admins::Products#show</h1>
+<p>Find me in app/views/admins/products/show.html.erb</p>
+
+<div><%= image_tag @product.image.to_s, :size => '200x200' %></div>
+<div><%= @product.name %></div>
+<div><%= @product.description %></div>
+<div><%= @product.genre %></div>
+<div><%= @product.price %></div>
+<div><%= @product.sales_status %></div>
+<%= link_to "編集",  edit_admins_product_path(@product) %>

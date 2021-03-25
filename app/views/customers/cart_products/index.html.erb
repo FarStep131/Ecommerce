@@ -1,0 +1,24 @@
+<h1>Customers::CartProducts#index</h1>
+<p>Find me in app/views/customers/cart_products/index.html.erb</p>
+
+<% if @cart_products.count >= 1 %>
+  <%= link_to "全て削除", cart_products_destroy_all_path, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+  <% @cart_products.each do |cart_product| %>
+    <div>
+      <%= image_tag cart_product.product.image.to_s, :size => '200x200' %>
+      <%= cart_product.product.name %>
+      <%= cart_product.quantity %>
+      <%= link_to "＋", cart_products_increase_path(cart_product_id: cart_product.id), method: :patch %>
+      <% if cart_product.quantity >= 2 %>
+        <%= link_to "ー", cart_products_decrease_path(cart_product_id: cart_product.id), method: :patch %>
+      <% end %>
+      <%= link_to "削除", cart_product_path(cart_product), method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+    </div>
+  <% end %>
+  <%= link_to '注文画面へ進む', new_order_path %>
+  <% else %>
+  <div>
+    カートの中身が空です。
+  </div>
+<% end %>
+

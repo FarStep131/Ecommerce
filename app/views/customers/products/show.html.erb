@@ -1,0 +1,13 @@
+<h1>Customers::Products#show</h1>
+<p>Find me in app/views/customers/products/show.html.erb</p>
+
+<div><%= image_tag @product.image.to_s, :size => '200x200' %></div>
+<div><%= @product.name %></div>
+<div><%= @product.description %></div>
+<div><%= @product.genre %></div>
+<div><%= @product.price %></div>
+<div><%= @product.sales_status %></div>
+
+<% if @product.sales_status == "販売可" %>
+  <%= link_to "カートに入れる", cart_products_path(product_id: @product.id), method: :post %>
+<% end %>
